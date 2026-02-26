@@ -43,7 +43,7 @@ async function strapiRequest<T>(path: string, params?: Record<string, string>): 
       'Content-Type': 'application/json',
       ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
     },
-    next: { revalidate: 60 },
+    next: { revalidate: false },
   });
 
   if (!res.ok) throw new Error(`Strapi error: ${res.status} ${res.statusText}`);
@@ -54,9 +54,8 @@ async function strapiRequest<T>(path: string, params?: Record<string, string>): 
 
 export async function getProducts(): Promise<Product[]> {
   const data = await strapiRequest<{ data: Product[] }>('/products', {
-    'populate[images]': 'true',
-    'populate[category]': 'true',
-    'filters[publishedAt][$notNull]': 'true',
+    'populate[0]': 'images',
+    'populate[1]': 'category',
     'sort': 'createdAt:desc',
   });
   return data.data;
@@ -64,8 +63,8 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getProductByDocumentId(documentId: string): Promise<Product | null> {
   const data = await strapiRequest<{ data: Product }>(`/products/${documentId}`, {
-    'populate[images]': 'true',
-    'populate[category]': 'true',
+    'populate[0]': 'images',
+    'populate[1]': 'category',
   });
   return data.data ?? null;
 }
