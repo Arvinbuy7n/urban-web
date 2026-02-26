@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getProductByDocumentId, getStrapiImageUrl } from "@/src/lib/strapi";
+import { getProductByDocumentId, getStrapiImages } from "@/src/lib/strapi";
 import ProductDetail from "./ProductDetail";
 
 interface Props {
@@ -12,6 +12,8 @@ export default async function ProductPage({ params }: Props) {
 
   if (!product) notFound();
 
+  const images = getStrapiImages(product.images ?? []);
+
   return (
     <ProductDetail
       title={product.title}
@@ -19,7 +21,7 @@ export default async function ProductPage({ params }: Props) {
       price={product.price}
       tag={product.tag ?? undefined}
       tagVariant={product.tagVariant}
-      image={getStrapiImageUrl(product.image)}
+      images={images}
       category={product.category?.name ?? "Бүтээгдэхүүн"}
     />
   );

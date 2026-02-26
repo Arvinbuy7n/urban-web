@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @source "../**/*.{ts,tsx}";
@@ -6,6 +6,7 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Manrope", ui-sans-serif, system-ui, sans-serif;
 
   --color-primary: #ff6a00;
   --color-background-light: #f8f7f5;
@@ -19,6 +20,9 @@
 @layer base {
   body {
     @apply bg-background-light text-slate-900 font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-heading);
   }
 }
 

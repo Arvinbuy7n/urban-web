@@ -13,7 +13,7 @@ interface Props {
   price: string;
   tag?: string;
   tagVariant?: "default" | "primary" | "secondary" | "destructive" | "outline";
-  image: string;
+  images: string[];
   category: string;
 }
 
@@ -30,17 +30,12 @@ export default function ProductDetail({
   price,
   tag,
   tagVariant,
-  image,
+  images,
   category,
 }: Props) {
   const [activeImage, setActiveImage] = useState(0);
 
-  const thumbs = [
-    image,
-    `https://picsum.photos/seed/p1/400/400`,
-    `https://picsum.photos/seed/p2/400/400`,
-    `https://picsum.photos/seed/p3/400/400`,
-  ];
+  const thumbs = images;
 
   return (
     <div className="min-h-screen bg-slate-50/50">
@@ -66,14 +61,16 @@ export default function ProductDetail({
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="relative aspect-square bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm"
+              className="relative aspect-square bg-slate-100 rounded-3xl overflow-hidden border border-slate-200 shadow-sm"
             >
-              <img
-                src={thumbs[activeImage]}
-                alt={title}
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
+              {thumbs[activeImage] && (
+                <img
+                  src={thumbs[activeImage]}
+                  alt={title}
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              )}
               {tag && (
                 <div className="absolute top-4 left-4">
                   <Badge variant={tagVariant} className="shadow-md">

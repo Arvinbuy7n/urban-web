@@ -46,7 +46,7 @@ export const Navbar = () => {
                   "relative px-4 py-5 text-[11px] font-bold uppercase tracking-widest transition-colors duration-200",
                   active
                     ? "text-primary"
-                    : "text-slate-400 hover:text-slate-800"
+                    : "text-slate-700 hover:text-slate-900"
                 )}
               >
                 {link.label}

@@ -54,12 +54,14 @@ const ProductCard = ({
           <div className="group flex gap-5 bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all duration-500 p-4 cursor-pointer">
             {/* Thumbnail */}
             <div className="relative w-32 h-32 rounded-xl overflow-hidden bg-slate-50 flex-shrink-0">
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
+              {product.image && (
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+              )}
               {product.tag && (
                 <div className="absolute top-2 left-2">
                   <Badge
@@ -105,12 +107,14 @@ const ProductCard = ({
         <div className="group h-full flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/8 transition-all duration-500 cursor-pointer">
           {/* ── Image ── */}
           <div className="relative overflow-hidden bg-slate-50 aspect-[4/3] flex-shrink-0">
-            <img
-              src={product.image}
-              alt={product.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              referrerPolicy="no-referrer"
-            />
+            {product.image && (
+              <img
+                src={product.image}
+                alt={product.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
+            )}
 
             {/* Hover gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -127,12 +131,6 @@ const ProductCard = ({
               </div>
             )}
 
-            {/* Price chip — bottom right */}
-            <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-lg border border-white/60">
-              <span className="font-black text-primary text-sm">
-                {product.price}
-              </span>
-            </div>
           </div>
 
           {/* ── Content ── */}
@@ -152,9 +150,7 @@ const ProductCard = ({
 
             {/* ── Footer row ── */}
             <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-sm font-bold text-slate-600 group-hover:text-primary transition-colors duration-300">
-                {isInventory ? "Цуврал судлах" : "Дэлгэрэнгүй харах"}
-              </span>
+              <span className="font-black text-primary text-sm">{product.price}</span>
               <div className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-primary flex items-center justify-center transition-all duration-300 flex-shrink-0">
                 <ArrowRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-white transition-colors duration-300" />
               </div>

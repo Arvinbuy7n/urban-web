@@ -8,7 +8,7 @@ export default async function Home() {
     id: p.documentId,
     title: p.title,
     description: p.description,
-    image: getStrapiImageUrl(p.image),
+    image: getStrapiImageUrl(p.images?.[0]) ?? "",
     price: p.price,
     tag: p.tag ?? undefined,
     tagVariant: p.tagVariant,

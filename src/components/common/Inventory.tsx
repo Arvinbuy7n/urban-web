@@ -37,7 +37,7 @@ export const Inventory = ({ products }: InventoryProps) => {
           </div>
           <Link
             href="/categories"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-600 hover:text-primary border border-slate-200 hover:border-primary/30 bg-white rounded-xl px-4 py-2.5 transition-all shrink-0"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-primary/70 transition-colors shrink-0"
           >
             Бүгдийг харах <ArrowRight className="w-3.5 h-3.5" />
           </Link>

@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Star, TrendingUp, Zap } from "lucide-react";
+import { ArrowRight, ShieldCheck, Star } from "lucide-react";
 import { Button } from "@/src/lib/ui/button";
 
 const STATS = [
@@ -14,7 +15,34 @@ const STATS = [
 
 const TAGS = ["ISO баталгаатай", "Галд тэсвэртэй", "OSHA нийцтэй"];
 
+const HERO_IMAGES = [
+  {
+    src: "https://cdn.strauss.com/global/assets/ats/images/ArticleTileV3/product/16.Release.3210670/High-vis_softshell_jacket_e_s_motion-9064-3-638382265624666173.png",
+    label: "Титан GT В-Цуврал",
+    sub: "Галд тэсвэртэй · ISO баталгаатай",
+  },
+  {
+    src: "https://cdn.strauss.com/global/assets/ats/images/ArticleTileV3/product/16.Release.3210770/High-vis_trousers_e_s_motion-9059-3-638162704673553162.png",
+    label: "Арктик Про Цуврал",
+    sub: "Хүйтэнд тэсвэртэй · CE баталгаатай",
+  },
+  {
+    src: "https://cdn.strauss.com/global/assets/ats/images/ArticleTileV3/product/16.Release.3210120/High-vis_softshell_jacket_softl_e_s_motion_2020-117826-0-638162704600563934.png",
+    label: "Хай-Виз Элит Цуврал",
+    sub: "Өндөр харагдах · ANSI нийцтэй",
+  },
+];
+
 export const Hero = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative bg-white overflow-hidden">
       {/* Top accent line */}
@@ -35,7 +63,7 @@ export const Hero = () => {
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-100/60 rounded-full blur-[100px] translate-y-1/3 pointer-events-none" />
 
       <div className="relative max-w-[1280px] mx-auto px-6">
-        <div className="grid lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_540px] gap-8 xl:gap-16 min-h-[88vh] items-center py-16">
+        <div className="grid lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_540px] gap-8 xl:gap-16 min-h-[80vh] items-center py-16">
           {/* ── Left ── */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -91,7 +119,7 @@ export const Hero = () => {
                 asChild
                 size="lg"
                 variant="outline"
-                className="rounded-xl px-7 border-slate-200 text-slate-700 hover:bg-slate-50"
+                className="rounded-xl px-7 border-slate-800 text-slate-900 hover:bg-slate-900 hover:text-white"
               >
                 <Link href="#contact">Холбоо барих</Link>
               </Button>
@@ -135,91 +163,58 @@ export const Hero = () => {
             </div>
           </motion.div>
 
-          {/* ── Right — image stack ── */}
+          {/* ── Right — image carousel ── */}
           <motion.div
             initial={{ opacity: 0, x: 32 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.75, ease: "easeOut", delay: 0.1 }}
             className="relative hidden lg:block"
           >
-            {/* Main image */}
             <div className="relative rounded-3xl overflow-hidden aspect-[3/4] shadow-[0_32px_80px_-12px_rgba(0,0,0,0.2)] border border-slate-100">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-LdJFSYl9hw3tzCU7xDOqa-TAwFq_kDKHVuUmgykNnkfBq-kznTey6tKiLwPZAsTc2VUnYOPv7Ms7ajD9go2HkPfSH3H1XgwY7TkgD6Zj6gOJ-q3bc1grE_07jldzLz7gzmJHo6B8uu0L-hd6cUsLjZP0X_z3VZXq0Iz1XCcl5RH0WSVKzGC8jkz4sCXM_fxqwGS4QZeziJXJ4Y2POx3i9IX_nG6c8SC8wPPJUAqD-TF2NN_SZv8zHtZoTtnW6Mn9bR5u4_WimLc"
-                alt="Аюулгүй хувцас"
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
+              {/* Slides */}
+              {HERO_IMAGES.map((img, i) => (
+                <motion.img
+                  key={i}
+                  src={img.src}
+                  alt="Аюулгүй хувцас"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                  animate={{ opacity: i === activeSlide ? 1 : 0 }}
+                  transition={{ duration: 1.2, ease: "easeInOut" }}
+                />
+              ))}
+
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
               {/* Bottom overlay card */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.85, duration: 0.5 }}
-                className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl p-4 flex items-center justify-between shadow-xl"
-              >
-                <div>
-                  <p className="text-[9px] font-black uppercase tracking-widest text-primary mb-1">
-                    Онцлох бүтээгдэхүүн
-                  </p>
-                  <p className="text-sm font-black text-slate-900">
-                    Титан GT В-Цуврал
-                  </p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">
-                    Галд тэсвэртэй · ISO баталгаатай
-                  </p>
-                </div>
+              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl p-4 flex items-center justify-between shadow-xl">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeSlide}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <p className="text-[9px] font-black uppercase tracking-widest text-primary mb-1">
+                      Онцлох бүтээгдэхүүн
+                    </p>
+                    <p className="text-sm font-black text-slate-900">
+                      {HERO_IMAGES[activeSlide].label}
+                    </p>
+                    <p className="text-[10px] text-slate-400 mt-0.5">
+                      {HERO_IMAGES[activeSlide].sub}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
                 <Link
                   href="/categories"
-                  className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 hover:scale-105 transition-transform"
+                  className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 hover:scale-105 transition-transform shrink-0"
                 >
                   <ArrowRight className="text-white w-4 h-4" />
                 </Link>
-              </motion.div>
+              </div>
             </div>
-
-            {/* Floating card — top left */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.0, duration: 0.5 }}
-              className="absolute -left-10 top-12 bg-white rounded-2xl shadow-2xl border border-slate-100 px-4 py-3.5 flex items-center gap-3"
-            >
-              <div className="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
-                <TrendingUp className="w-4.5 h-4.5 text-emerald-500" />
-              </div>
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                  Борлуулалт
-                </p>
-                <p className="text-sm font-black text-slate-900">50,000+</p>
-              </div>
-            </motion.div>
-
-            {/* Floating card — top right */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                delay: 1.1,
-                type: "spring",
-                stiffness: 160,
-                damping: 14,
-              }}
-              className="absolute -right-8 top-8 bg-slate-900 text-white rounded-2xl shadow-2xl px-4 py-3.5"
-            >
-              <div className="flex items-center gap-1.5 mb-1">
-                <Zap className="w-3 h-3 text-primary" />
-                <p className="text-[9px] font-black uppercase tracking-widest text-slate-400">
-                  Үнэлгээ
-                </p>
-              </div>
-              <p className="text-2xl font-black leading-none">99.8%</p>
-              <p className="text-[10px] text-slate-500 mt-0.5">
-                Аюулгүй байдал
-              </p>
-            </motion.div>
           </motion.div>
         </div>
 
@@ -228,7 +223,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-4 border-t border-slate-100"
+          className="grid grid-cols-2 md:grid-cols-4"
         >
           {STATS.map((stat, i) => (
             <div

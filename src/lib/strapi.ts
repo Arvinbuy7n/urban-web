@@ -26,7 +26,7 @@ export interface Product {
   tag: string | null;
   tagVariant: 'default' | 'primary' | 'secondary' | 'destructive' | 'outline';
   slug: string;
-  image: StrapiImage | null;
+  images: StrapiImage[];
   category: Category | null;
 }
 
@@ -54,7 +54,7 @@ async function strapiRequest<T>(path: string, params?: Record<string, string>): 
 
 export async function getProducts(): Promise<Product[]> {
   const data = await strapiRequest<{ data: Product[] }>('/products', {
-    'populate[image]': 'true',
+    'populate[images]': 'true',
     'populate[category]': 'true',
     'filters[publishedAt][$notNull]': 'true',
     'sort': 'createdAt:desc',
@@ -64,7 +64,7 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getProductByDocumentId(documentId: string): Promise<Product | null> {
   const data = await strapiRequest<{ data: Product }>(`/products/${documentId}`, {
-    'populate[image]': 'true',
+    'populate[images]': 'true',
     'populate[category]': 'true',
   });
   return data.data ?? null;
@@ -81,7 +81,14 @@ export async function getCategories(): Promise<Category[]> {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-export function getStrapiImageUrl(image: StrapiImage | null): string {
-  if (!image) return 'https://picsum.photos/seed/placeholder/800/800';
+export function getStrapiImageUrl(image: StrapiImage | null | undefined): string | null {
+  if (!image) return null;
   return image.url.startsWith('http') ? image.url : `${STRAPI_URL}${image.url}`;
+}
+
+export function getStrapiImages(images: StrapiImage[]): string[] {
+  if (!images || images.length === 0) return [];
+  return images.map((img) =>
+    img.url.startsWith('http') ? img.url : `${STRAPI_URL}${img.url}`
+  );
 }

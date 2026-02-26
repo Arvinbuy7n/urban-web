@@ -22,11 +22,12 @@ interface Props {
 }
 
 function toCardProduct(p: Product, strapiUrl: string): ProductForCard {
-  const imageUrl = p.image
-    ? p.image.url.startsWith("http")
-      ? p.image.url
-      : `${strapiUrl}${p.image.url}`
-    : "https://picsum.photos/seed/placeholder/800/800";
+  const firstImage = p.images?.[0];
+  const imageUrl = firstImage
+    ? firstImage.url.startsWith("http")
+      ? firstImage.url
+      : `${strapiUrl}${firstImage.url}`
+    : "";
 
   return {
     id: p.documentId,
