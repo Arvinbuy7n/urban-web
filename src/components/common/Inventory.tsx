@@ -1,0 +1,60 @@
+"use client";
+
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import ProductCard from "./ProductCard";
+
+interface Product {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  price: string;
+  tag?: string;
+  tagVariant?: "default" | "primary" | "secondary" | "destructive" | "outline";
+}
+
+interface InventoryProps {
+  products: Product[];
+}
+
+export const Inventory = ({ products }: InventoryProps) => {
+  return (
+    <section className="bg-slate-50 py-24">
+      <div className="max-w-[1280px] mx-auto px-6">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+          <div>
+            <p className="text-[11px] font-black uppercase tracking-widest text-primary mb-2">
+              Бүтээгдэхүүн
+            </p>
+            <h2 className="text-2xl font-black tracking-tight text-slate-900">
+              Онцлох бараа нөөц
+            </h2>
+            <p className="text-sm text-slate-500 mt-1">
+              Орчин үеийн ажилчдад зориулан бүтээгдсэн чухал хамгаалалт.
+            </p>
+          </div>
+          <Link
+            href="/categories"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-600 hover:text-primary border border-slate-200 hover:border-primary/30 bg-white rounded-xl px-4 py-2.5 transition-all shrink-0"
+          >
+            Бүгдийг харах <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {products.map((product, idx) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              index={idx}
+              variant="inventory"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
