@@ -12,9 +12,6 @@ export default async function CategoriesPage() {
       {/* Page header */}
       <div className="bg-white border-b border-slate-100">
         <div className="max-w-[1280px] mx-auto px-6 py-10">
-          <p className="text-[11px] font-black uppercase tracking-widest text-primary mb-2">
-            Каталог
-          </p>
           <h1 className="text-2xl font-black tracking-tight text-slate-900">
             Бүх бүтээгдэхүүн
           </h1>

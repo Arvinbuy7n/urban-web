@@ -22,7 +22,7 @@ export interface Product {
   documentId: string;
   title: string;
   description: string;
-  price: string;
+  price: number;
   tag: string | null;
   tagVariant: 'default' | 'primary' | 'secondary' | 'destructive' | 'outline';
   slug: string;
@@ -43,7 +43,7 @@ async function strapiRequest<T>(path: string, params?: Record<string, string>): 
       'Content-Type': 'application/json',
       ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
     },
-    next: { revalidate: false },
+    cache: 'no-store',
   });
 
   if (!res.ok) throw new Error(`Strapi error: ${res.status} ${res.statusText}`);
@@ -79,6 +79,11 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
+
+export function formatPrice(price: number | null | undefined): string {
+  if (price == null) return "—";
+  return Number(price).toLocaleString("en-US") + "₮";
+}
 
 export function getStrapiImageUrl(image: StrapiImage | null | undefined): string | null {
   if (!image) return null;

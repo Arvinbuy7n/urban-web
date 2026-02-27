@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 
-export const CTA = () => {
+export const CallToAction = () => {
   return (
     <section className="bg-slate-50 py-24">
       <div className="max-w-[1280px] mx-auto px-6">
@@ -16,7 +16,8 @@ export const CTA = () => {
           <div
             className="absolute inset-0 opacity-[0.04]"
             style={{
-              backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)",
+              backgroundImage:
+                "radial-gradient(circle, #fff 1px, transparent 1px)",
               backgroundSize: "28px 28px",
             }}
           />

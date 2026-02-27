@@ -15,7 +15,7 @@ export const WhyElite = () => {
             </p>
             <h2 className="text-2xl font-black tracking-tight text-slate-900 leading-snug">
               Үйлдвэрийн удирдагчид <br className="hidden sm:block" />
-              яагаад Elite-г сонгодог вэ
+              яагаад Urban Uniform-г сонгодог вэ
             </h2>
           </div>
           <p className="text-sm text-slate-500 max-w-sm leading-relaxed">

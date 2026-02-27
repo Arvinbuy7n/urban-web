@@ -11,9 +11,8 @@ import {
 
 const navLinks = [
   { label: "Бүтээгдэхүүн", href: "/categories" },
-  { label: "Технологи", href: "#" },
   { label: "Бидний тухай", href: "#" },
-  { label: "Холбоо барих", href: "#" },
+  { label: "Холбоо барих", href: "/contact" },
 ];
 
 export const MobileNav = () => {
@@ -25,7 +24,7 @@ export const MobileNav = () => {
         </button>
       </SheetTrigger>
 
-      <SheetContent side="right" className="w-80 flex flex-col p-0 bg-white">
+      <SheetContent side="right" className="w-full flex flex-col p-0 bg-white">
         {/* Header */}
         <div className="px-6 py-5 border-b border-slate-100 flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -33,7 +32,7 @@ export const MobileNav = () => {
           </div>
           <div>
             <p className="font-black text-sm tracking-tight uppercase leading-none">
-              Elite ХХХ
+              Urban Uniform
             </p>
             <p className="text-[10px] text-slate-400 font-medium mt-0.5">
               Аюулгүй байдлын тоног төхөөрөмж
@@ -56,40 +55,6 @@ export const MobileNav = () => {
             </SheetClose>
           ))}
         </nav>
-
-        {/* Footer */}
-        <div className="mx-4 mb-6 rounded-2xl bg-slate-50 border border-slate-100 overflow-hidden">
-          <a
-            href="tel:+97699999999"
-            className="flex items-center gap-3 px-4 py-3.5 hover:bg-slate-100 transition-colors border-b border-slate-100"
-          >
-            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-              <Phone className="w-3 h-3 text-primary" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-slate-700 leading-none">
-                +976 9999-9999
-              </p>
-              <p className="text-[10px] text-slate-400 mt-0.5">24/7 дэмжлэг</p>
-            </div>
-          </a>
-          <a
-            href="mailto:info@elitesafety.mn"
-            className="flex items-center gap-3 px-4 py-3.5 hover:bg-slate-100 transition-colors"
-          >
-            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-              <Mail className="w-3 h-3 text-primary" />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-slate-700 leading-none">
-                info@elitesafety.mn
-              </p>
-              <p className="text-[10px] text-slate-400 mt-0.5">
-                И-мэйлээр холбоо барих
-              </p>
-            </div>
-          </a>
-        </div>
       </SheetContent>
     </Sheet>
   );

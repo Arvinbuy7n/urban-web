@@ -8,9 +8,8 @@ import { MobileNav } from "./MobileNav";
 
 const navLinks = [
   { label: "Бүтээгдэхүүн", href: "/categories" },
-  { label: "Технологи", href: "#" },
   { label: "Бидний тухай", href: "#" },
-  { label: "Холбоо барих", href: "#" },
+  { label: "Холбоо барих", href: "/contact" },
 ];
 
 export const Navbar = () => {
@@ -25,8 +24,11 @@ export const Navbar = () => {
             <Shield className="text-white w-4 h-4" />
           </div>
           <div className="flex flex-col leading-none gap-0.5">
-            <span className="font-black text-sm tracking-tighter uppercase text-slate-900">
-              Elite ХХХ
+            <span
+              className="text-base font-extrabold uppercase tracking-widest text-slate-900"
+              style={{ fontFamily: "inter" }}
+            >
+              Urban Uniform
             </span>
             <span className="text-[9px] font-bold tracking-[0.18em] text-slate-400 uppercase hidden sm:block">
               Safety Wear

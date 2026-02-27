@@ -1,25 +1,15 @@
-import { getProducts, getStrapiImageUrl } from "@/src/lib/strapi";
-import { Hero, Inventory, WhyElite, CTA } from "../components";
+import { getProducts } from "@/src/lib/strapi";
+import { Hero, Inventory, WhyElite, CallToAction } from "../components";
 
 export default async function Home() {
-  const strapiProducts = await getProducts();
-
-  const products = strapiProducts.map((p) => ({
-    id: p.documentId,
-    title: p.title,
-    description: p.description,
-    image: getStrapiImageUrl(p.images?.[0]) ?? "",
-    price: p.price,
-    tag: p.tag ?? undefined,
-    tagVariant: p.tagVariant,
-  }));
+  const products = await getProducts();
 
   return (
     <>
       <Hero />
       <Inventory products={products} />
       <WhyElite />
-      <CTA />
+      <CallToAction />
     </>
   );
 }

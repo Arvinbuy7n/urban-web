@@ -6,11 +6,12 @@ import Link from "next/link";
 import { ChevronRight, Star, Shield, Zap, CheckCircle2, Package, Award } from "lucide-react";
 import { Badge } from "@/src/lib/ui/badge";
 import { cn } from "@/src/lib/utils";
+import { formatPrice } from "@/src/lib/strapi";
 
 interface Props {
   title: string;
   description: string;
-  price: string;
+  price: number;
   tag?: string;
   tagVariant?: "default" | "primary" | "secondary" | "destructive" | "outline";
   images: string[];
@@ -131,7 +132,7 @@ export default function ProductDetail({
 
             {/* Price */}
             <div className="flex items-baseline gap-3">
-              <span className="text-3xl font-black text-slate-900">{price}</span>
+              <span className="text-3xl font-black text-slate-900">{formatPrice(price)}</span>
               <span className="text-xs font-bold text-slate-400 bg-slate-100 rounded-full px-2.5 py-1">
                 НӨАТ багтсан
               </span>

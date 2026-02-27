@@ -3,16 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ProductCard from "./ProductCard";
-
-interface Product {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  price: string;
-  tag?: string;
-  tagVariant?: "default" | "primary" | "secondary" | "destructive" | "outline";
-}
+import { Product } from "@/src/lib/strapi";
 
 interface InventoryProps {
   products: Product[];
