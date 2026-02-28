@@ -1,0 +1,147 @@
+"use client";
+
+import { useState } from "react";
+import { Phone, Mail, MessageSquare, Send, CheckCircle2 } from "lucide-react";
+import { cn } from "@/src/lib/utils";
+
+const STRAPI_URL =
+  process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
+
+export default function ContactForm() {
+  const [form, setForm] = useState({ phone_number: "", mail: "", note: "" });
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [error, setError] = useState("");
+
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("loading");
+    setError("");
+
+    try {
+      const res = await fetch(`${STRAPI_URL}/api/contact-submissions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: form }),
+      });
+
+      if (!res.ok) throw new Error();
+      setStatus("success");
+      setForm({ phone_number: "", mail: "", note: "" });
+    } catch {
+      setStatus("error");
+      setError("Илгээхэд алдаа гарлаа. Дахин оролдоно уу.");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 gap-4 text-center">
+        <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
+          <CheckCircle2 className="w-7 h-7 text-primary" />
+        </div>
+        <h3 className="text-base font-black text-slate-900">
+          Амжилттай илгээлээ!
+        </h3>
+        <p className="text-sm text-slate-400 max-w-xs leading-relaxed">
+          Таны мэдэгдлийг хүлээн авлаа. Удахгүй холбоо барина.
+        </p>
+        <button
+          onClick={() => setStatus("idle")}
+          className="mt-2 text-xs font-bold text-primary hover:underline"
+        >
+          Дахин илгээх
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Phone */}
+      <div>
+        <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5">
+          Утасны дугаар
+        </label>
+        <div
+          className={cn(
+            "flex items-center gap-3 bg-slate-50 border rounded-xl px-4 h-12 transition-colors focus-within:border-primary/50 focus-within:bg-white",
+            "border-slate-200"
+          )}
+        >
+          <Phone className="w-4 h-4 text-slate-400 shrink-0" />
+          <input
+            type="tel"
+            name="phone_number"
+            value={form.phone_number}
+            onChange={handleChange}
+            required
+            placeholder="9968 3330"
+            className="bg-transparent text-sm w-full focus:outline-none placeholder:text-slate-300 text-slate-900"
+          />
+        </div>
+      </div>
+
+      {/* Email */}
+      <div>
+        <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5">
+          И-мэйл
+        </label>
+        <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 h-12 transition-colors focus-within:border-primary/50 focus-within:bg-white">
+          <Mail className="w-4 h-4 text-slate-400 shrink-0" />
+          <input
+            type="email"
+            name="mail"
+            value={form.mail}
+            onChange={handleChange}
+            required
+            placeholder="example@mail.com"
+            className="bg-transparent text-sm w-full focus:outline-none placeholder:text-slate-300 text-slate-900"
+          />
+        </div>
+      </div>
+
+      {/* Note */}
+      <div>
+        <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5">
+          Тэмдэглэл
+        </label>
+        <div className="flex gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 transition-colors focus-within:border-primary/50 focus-within:bg-white">
+          <MessageSquare className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+          <textarea
+            name="note"
+            value={form.note}
+            onChange={handleChange}
+            required
+            rows={4}
+            placeholder="Захиалга, үнийн саналын хүсэлт, асуулт болон санал хүсэлтээ энд бичнэ үү..."
+            className="bg-transparent text-sm w-full focus:outline-none placeholder:text-slate-300 text-slate-900 resize-none"
+          />
+        </div>
+      </div>
+
+      {error && <p className="text-xs font-bold text-red-500">{error}</p>}
+
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className={cn(
+          "w-full flex items-center justify-center gap-2 h-12 rounded-xl text-sm font-black transition-all",
+          status === "loading"
+            ? "bg-primary/60 text-white cursor-not-allowed"
+            : "bg-primary hover:bg-primary/90 text-white"
+        )}
+      >
+        <Send className="w-4 h-4" />
+        {status === "loading" ? "Илгээж байна..." : "Илгээх"}
+      </button>
+    </form>
+  );
+}

@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Clock, ArrowUpRight } from "lucide-react";
+import ContactForm from "./ContactForm";
 
 export const metadata = {
   title: "Холбоо барих — Urban Uniform",
@@ -97,17 +98,31 @@ export default function ContactPage() {
           ))}
         </div>
 
-        {/* Map embed */}
-        <div className="mt-6 rounded-2xl overflow-hidden border border-slate-100 shadow-sm h-[420px]">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2673.6!2d106.9101487!3d47.8983656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9693006140837b%3A0xe7ce14dc8cf54d57!2sPG%20Plaza%20%D0%9E%D1%84%D1%84%D0%B8%D1%81!5e0!3m2!1sen!2smn!4v1"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+        {/* Map + Form */}
+        <div className="mt-6 grid lg:grid-cols-2 gap-6">
+          {/* Map embed */}
+          <div className="rounded-2xl overflow-hidden border border-slate-100 shadow-sm h-[420px]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2673.6!2d106.9101487!3d47.8983656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9693006140837b%3A0xe7ce14dc8cf54d57!2sPG%20Plaza%20%D0%9E%D1%84%D1%84%D0%B8%D1%81!5e0!3m2!1sen!2smn!4v1"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+
+          {/* Contact form */}
+          <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+            <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-1">
+              Мэдэгдэл илгээх
+            </p>
+            <h2 className="text-lg font-black text-slate-900 mb-6">
+              Бидэнд бичнэ үү
+            </h2>
+            <ContactForm />
+          </div>
         </div>
       </div>
     </div>

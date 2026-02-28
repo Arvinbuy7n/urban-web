@@ -1,5 +1,5 @@
 import { getProducts } from "@/src/lib/strapi";
-import { Hero, Inventory, WhyElite, CallToAction } from "../components";
+import { Hero, Inventory, WhyElite, ClientsSlider, CallToAction } from "../components";
 
 export default async function Home() {
   const products = await getProducts();
@@ -9,6 +9,7 @@ export default async function Home() {
       <Hero />
       <Inventory products={products} />
       <WhyElite />
+      <ClientsSlider />
       <CallToAction />
     </>
   );

@@ -7,10 +7,10 @@ const columns = [
   {
     title: "Шийдлүүд",
     links: [
-      { label: "Уул уурхай", href: "#" },
-      { label: "Барилга", href: "#" },
-      { label: "Сэргээгдэх эрчим хүч", href: "#" },
-      { label: "Газрын тос ба хий", href: "#" },
+      { label: "Уул уурхай", href: "#", disabled: true },
+      { label: "Барилга", href: "#", disabled: true },
+      { label: "Сэргээгдэх эрчим хүч", href: "#", disabled: true },
+      { label: "Газрын тос ба хий", href: "#", disabled: true },
     ],
   },
   {
@@ -25,10 +25,10 @@ const columns = [
   {
     title: "Компани",
     links: [
-      { label: "Бидний тухай", href: "#" },
-      { label: "Тогтвортой байдал", href: "#" },
-      { label: "Ажлын байр", href: "#" },
-      { label: "Мэдээ", href: "#" },
+      { label: "Бидний тухай", href: "/about" },
+      { label: "Тогтвортой байдал", href: "#", disabled: true },
+      { label: "Ажлын байр", href: "#", disabled: true },
+      { label: "Мэдээ", href: "#", disabled: true },
     ],
   },
 ];
@@ -97,12 +97,18 @@ export const Footer = () => {
               <ul className="space-y-3">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-xs text-slate-400 hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.disabled ? (
+                      <span className="text-xs text-slate-600 cursor-not-allowed select-none">
+                        {link.label}
+                      </span>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-xs text-slate-400 hover:text-white transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -130,7 +136,7 @@ export const Footer = () => {
         {/* Bottom bar */}
         <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-[10px] text-slate-600 uppercase tracking-widest">
-            © 2025 Urban Uniform. Бүх эрх хуулиар хамгаалагдсан.
+            © {new Date().getFullYear()} Urban Uniform. Бүх эрх хуулиар хамгаалагдсан.
           </p>
           <div className="flex flex-wrap justify-center gap-5">
             {legal.map((link) => (

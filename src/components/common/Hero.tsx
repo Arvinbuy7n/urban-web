@@ -121,7 +121,7 @@ export const Hero = () => {
                 variant="outline"
                 className="rounded-xl px-7 border-slate-800 text-slate-900 hover:bg-slate-900 hover:text-white"
               >
-                <Link href="#contact">Холбоо барих</Link>
+                <Link href="/contact">Холбоо барих</Link>
               </Button>
             </div>
 

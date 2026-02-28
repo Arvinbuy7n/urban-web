@@ -45,3 +45,18 @@
 .section-padding {
   @apply py-16 md:py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto;
 }
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

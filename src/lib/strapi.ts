@@ -15,6 +15,8 @@ export interface Category {
   id: number;
   name: string;
   slug: string;
+  parent?: Category | null;
+  children?: Category[];
 }
 
 export interface Product {
@@ -74,6 +76,8 @@ export async function getProductByDocumentId(documentId: string): Promise<Produc
 export async function getCategories(): Promise<Category[]> {
   const data = await strapiRequest<{ data: Category[] }>('/categories', {
     'sort': 'name:asc',
+    'populate[0]': 'children',
+    'populate[1]': 'parent',
   });
   return data.data;
 }

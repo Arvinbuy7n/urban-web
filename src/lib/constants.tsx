@@ -51,6 +51,19 @@ export const PRODUCTS = [
   },
 ];
 
+export const CLIENTS = [
+  { name: "Монгол Алт ХХК", abbr: "МА" },
+  { name: "Эрдэнэт Үйлдвэр", abbr: "ЭҮ" },
+  { name: "Оюу Толгой", abbr: "ОТ" },
+  { name: "МАК Холдинг", abbr: "МАК" },
+  { name: "Тавантолгой ХК", abbr: "ТТ" },
+  { name: "Монинжбариа", abbr: "МИБ" },
+  { name: "Шунхлай Констракшн", abbr: "ШК" },
+  { name: "Баянтэ Майнинг", abbr: "БМ" },
+  { name: "Ард Финанс", abbr: "АФ" },
+  { name: "Гоби Ресурс", abbr: "ГР" },
+];
+
 export const FEATURES = [
   {
     title: "Дээд зэргийн бат бэх байдал",
