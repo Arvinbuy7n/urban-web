@@ -11,7 +11,7 @@ import {
 
 const navLinks = [
   { label: "Бүтээгдэхүүн", href: "/categories" },
-  { label: "Бидний тухай", href: "#" },
+  { label: "Бидний тухай", href: "/about" },
   { label: "Холбоо барих", href: "/contact" },
 ];
 

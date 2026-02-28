@@ -1,10 +1,4 @@
-import {
-  Shield,
-  Award,
-  CheckCircle,
-  Zap,
-  HeartHandshake,
-} from "lucide-react";
+import { Shield, Award, CheckCircle, Zap, HeartHandshake } from "lucide-react";
 
 export const metadata = {
   title: "Бидний тухай — Urban Uniform",
@@ -69,7 +63,7 @@ export default function AboutPage() {
             Бидний тухай
           </p>
           <h1 className="text-5xl font-black tracking-tight leading-[1.1] mb-5 max-w-xl">
-            Аюулгүй байдал —{" "}
+            Аюулгүй байдал{" "}
             <span className="text-primary">бидний гол зорилго</span>
           </h1>
           <p className="text-sm text-slate-400 max-w-md leading-relaxed mb-16">
@@ -87,7 +81,9 @@ export default function AboutPage() {
                   i !== 0 ? "border-l border-slate-800" : ""
                 }`}
               >
-                <span className="text-2xl font-black text-white">{s.value}</span>
+                <span className="text-2xl font-black text-white">
+                  {s.value}
+                </span>
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
                   {s.label}
                 </span>
@@ -115,8 +111,8 @@ export default function AboutPage() {
             </p>
             <p className="text-sm text-slate-500 leading-relaxed">
               ISO 9001 баталгаатай манай үйлдвэрлэлийн процесс нь чанарын
-              хяналтыг бүх шатанд хэрэгжүүлж, үйлчлүүлэгч бүрт найдвартай
-              шийдэл санал болгодог.
+              хяналтыг бүх шатанд хэрэгжүүлж, үйлчлүүлэгч бүрт найдвартай шийдэл
+              санал болгодог.
             </p>
           </div>
 
@@ -171,7 +167,9 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="h-px bg-slate-100 mb-5" />
-                <h3 className="text-sm font-black text-slate-900 mb-2">{title}</h3>
+                <h3 className="text-sm font-black text-slate-900 mb-2">
+                  {title}
+                </h3>
                 <p className="text-xs text-slate-500 leading-relaxed flex-1">
                   {description}
                 </p>
