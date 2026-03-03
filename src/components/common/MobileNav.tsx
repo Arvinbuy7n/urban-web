@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Shield, Menu, Phone, Mail } from "lucide-react";
+import { Menu, Phone, Mail } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -26,18 +26,12 @@ export const MobileNav = () => {
 
       <SheetContent side="right" className="w-full flex flex-col p-0 bg-white">
         {/* Header */}
-        <div className="px-6 py-5 border-b border-slate-100 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
-            <Shield className="text-primary w-5 h-5" />
-          </div>
-          <div>
-            <p className="font-black text-sm tracking-tight uppercase leading-none">
-              Urban Uniform
-            </p>
-            <p className="text-[10px] text-slate-400 font-medium mt-0.5">
-              Аюулгүй байдлын тоног төхөөрөмж
-            </p>
-          </div>
+        <div className="px-6 py-5 border-b border-slate-100 flex items-center">
+          <img
+            src="/company/urbanblack.png"
+            alt="Urban Uniform"
+            className="h-10 w-auto object-contain"
+          />
         </div>
 
         {/* Nav links */}

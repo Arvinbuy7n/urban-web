@@ -30,16 +30,13 @@ export const ClientsSlider = () => {
           {doubled.map((client, idx) => (
             <div
               key={idx}
-              className="flex-shrink-0 mx-2.5 flex items-center gap-3 px-5 py-2.5 rounded-full bg-white border border-slate-200/80 shadow-sm hover:border-primary/30 hover:shadow-md transition-all duration-300 cursor-default group"
+              className="flex-shrink-0 mx-4 flex items-center justify-center px-6 py-3 rounded-xl bg-white border border-slate-200/80 shadow-sm hover:border-primary/30 hover:shadow-md transition-all duration-300 cursor-default"
             >
-              <div className="w-7 h-7 rounded-full bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors duration-300 flex-shrink-0">
-                <span className="text-[9px] font-black text-primary leading-none">
-                  {client.abbr}
-                </span>
-              </div>
-              <span className="text-[13px] font-semibold text-slate-500 group-hover:text-slate-800 whitespace-nowrap transition-colors duration-300">
-                {client.name}
-              </span>
+              <img
+                src={client.logo}
+                alt={client.name}
+                className="h-14 w-auto object-contain"
+              />
             </div>
           ))}
         </div>

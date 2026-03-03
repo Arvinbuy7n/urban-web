@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Shield, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 const columns = [
   {
@@ -46,13 +46,12 @@ export const Footer = () => {
         <div className="grid grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-14">
           {/* Brand column */}
           <div className="col-span-2 lg:col-span-1 space-y-6">
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shrink-0">
-                <Shield className="text-white w-4.5 h-4.5" />
-              </div>
-              <span className="font-black text-base tracking-tighter uppercase">
-                Urban Uniform
-              </span>
+            <Link href="/">
+              <img
+                src="/company/urbanwhite.png"
+                alt="Urban Uniform"
+                className="h-10 w-auto object-contain mb-2"
+              />
             </Link>
 
             <p className="text-slate-400 text-xs leading-relaxed max-w-[240px]">
@@ -136,7 +135,8 @@ export const Footer = () => {
         {/* Bottom bar */}
         <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-[10px] text-slate-600 uppercase tracking-widest">
-            © {new Date().getFullYear()} Urban Uniform. Бүх эрх хуулиар хамгаалагдсан.
+            © {new Date().getFullYear()} Urban Uniform. Бүх эрх хуулиар
+            хамгаалагдсан.
           </p>
           <div className="flex flex-wrap justify-center gap-5">
             {legal.map((link) => (

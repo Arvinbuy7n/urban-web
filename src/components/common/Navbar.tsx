@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Shield } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { MobileNav } from "./MobileNav";
 
@@ -19,21 +18,12 @@ export const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-slate-100/80 shadow-sm shadow-black/[0.03]">
       <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 shrink-0 group">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shadow-md shadow-primary/25 group-hover:shadow-primary/40 transition-shadow">
-            <Shield className="text-white w-4 h-4" />
-          </div>
-          <div className="flex flex-col leading-none gap-0.5">
-            <span
-              className="text-base font-extrabold uppercase tracking-widest text-slate-900"
-              style={{ fontFamily: "inter" }}
-            >
-              Urban Uniform
-            </span>
-            <span className="text-[9px] font-bold tracking-[0.18em] text-slate-400 uppercase hidden sm:block">
-              Safety Wear
-            </span>
-          </div>
+        <Link href="/" className="flex items-center shrink-0">
+          <img
+            src="/company/urbanblack.png"
+            alt="Urban Uniform"
+            className="h-14 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop nav */}

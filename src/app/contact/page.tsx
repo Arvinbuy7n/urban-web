@@ -119,7 +119,7 @@ export default function ContactPage() {
               Мэдэгдэл илгээх
             </p>
             <h2 className="text-lg font-black text-slate-900 mb-6">
-              Бидэнд бичнэ үү
+              Үнийн санал авах
             </h2>
             <ContactForm />
           </div>

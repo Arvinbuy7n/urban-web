@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Urban Uniform — Аюулгүй байдалд зориулан бүтээсэн",
   description:
     "Мэргэжлийн өндөр зэргийн аюулгүйн хувцас болон үйлдвэрийн хувийн хамгаалах хэрэгслийн шийдлүүд. Хамгаалалт болон тав тухтай байдлын хамгийн дээд стандартад зориулан нарийвчлалтай бүтээгдсэн.",
+  icons: {
+    icon: "/Urban_favicon.png",
+  },
 };
 
 export default function RootLayout({
