@@ -54,7 +54,7 @@ export default function ContactPage() {
       {/* Cards */}
       <div className="max-w-[1280px] mx-auto px-6 -mt-8 pb-20">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <PhoneCard single />
+          <PhoneCard />
           {contactItems.map(({ icon: Icon, label, value, href, external }) => (
             <div
               key={label}

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState, useEffect } from "react";
-import { PHONE_NUMBERS, shuffleArray } from "@/src/lib/phoneNumbers";
+import { PHONE_NUMBERS, shuffleArray, formatPhone } from "@/src/lib/phoneNumbers";
 
 const columns = [
   {
@@ -71,7 +71,7 @@ export const Footer = () => {
                 <div className="flex flex-wrap gap-x-2">
                   {phones.map((num, i) => (
                     <span key={num}>
-                      <a href={`tel:+976${num}`} className="hover:text-white transition-colors">{num}</a>
+                      <a href={`tel:+976${num}`} className="hover:text-white transition-colors">{formatPhone(num)}</a>
                       {i < phones.length - 1 && <span className="text-slate-600 ml-2">/</span>}
                     </span>
                   ))}

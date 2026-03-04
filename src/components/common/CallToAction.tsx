@@ -41,7 +41,7 @@ export const CallToAction = () => {
             {/* Right — buttons */}
             <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
               <Link
-                href="#contact"
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold text-sm px-7 py-3.5 rounded-xl transition-all shadow-lg shadow-primary/30"
               >
                 <Phone className="w-4 h-4" />
