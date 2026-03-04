@@ -83,7 +83,7 @@ export default function ContactForm() {
             value={form.phone_number}
             onChange={handleChange}
             required
-            placeholder="9968 3330"
+            placeholder="88886583"
             className="bg-transparent text-sm w-full focus:outline-none placeholder:text-slate-300 text-slate-900"
           />
         </div>

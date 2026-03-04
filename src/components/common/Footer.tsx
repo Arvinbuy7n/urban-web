@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useState, useEffect } from "react";
+import { PHONE_NUMBERS, shuffleArray } from "@/src/lib/phoneNumbers";
 
 const columns = [
   {
@@ -36,6 +38,9 @@ const columns = [
 const legal = ["Нууцлалын бодлого", "Үйлчилгээний нөхцөл", "Күүкийн бодлого"];
 
 export const Footer = () => {
+  const [phones, setPhones] = useState(PHONE_NUMBERS);
+  useEffect(() => { setPhones(shuffleArray(PHONE_NUMBERS)); }, []);
+
   return (
     <footer className="bg-slate-900 text-white">
       {/* Top divider accent */}
@@ -61,13 +66,17 @@ export const Footer = () => {
 
             {/* Contact info */}
             <div className="space-y-2.5">
-              <a
-                href="tel:+97699683330"
-                className="flex items-center gap-2.5 text-xs text-slate-400 hover:text-white transition-colors"
-              >
+              <div className="flex items-center gap-2.5 text-xs text-slate-400">
                 <Phone className="w-3.5 h-3.5 text-primary shrink-0" />
-                9968 3330
-              </a>
+                <div className="flex flex-wrap gap-x-2">
+                  {phones.map((num, i) => (
+                    <span key={num}>
+                      <a href={`tel:+976${num}`} className="hover:text-white transition-colors">{num}</a>
+                      {i < phones.length - 1 && <span className="text-slate-600 ml-2">/</span>}
+                    </span>
+                  ))}
+                </div>
+              </div>
               <a
                 href="mailto:uniform@urban.mn"
                 className="flex items-center gap-2.5 text-xs text-slate-400 hover:text-white transition-colors"

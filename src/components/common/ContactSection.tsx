@@ -1,12 +1,7 @@
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, MapPin, Clock } from "lucide-react";
+import PhoneCard from "./PhoneCard";
 
-const contactItems = [
-  {
-    icon: Phone,
-    label: "Утас",
-    value: "9968 3330",
-    href: "tel:+97699683330",
-  },
+const otherItems = [
   {
     icon: Mail,
     label: "И-мэйл",
@@ -46,7 +41,9 @@ export const ContactSection = () => {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {contactItems.map(({ icon: Icon, label, value, href }) => (
+          <PhoneCard />
+
+          {otherItems.map(({ icon: Icon, label, value, href }) => (
             <div
               key={label}
               className="bg-white rounded-2xl p-6 flex items-start gap-4 border border-slate-100"
@@ -62,19 +59,13 @@ export const ContactSection = () => {
                   <a
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
-                    rel={
-                      href.startsWith("http")
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="text-sm font-semibold text-slate-900 hover:text-primary transition-colors"
                   >
                     {value}
                   </a>
                 ) : (
-                  <p className="text-sm font-semibold text-slate-900">
-                    {value}
-                  </p>
+                  <p className="text-sm font-semibold text-slate-900">{value}</p>
                 )}
               </div>
             </div>

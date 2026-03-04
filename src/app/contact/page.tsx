@@ -1,5 +1,6 @@
-import { Mail, Phone, MapPin, Clock, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Clock, ArrowUpRight } from "lucide-react";
 import ContactForm from "./ContactForm";
+import PhoneCard from "@/src/components/common/PhoneCard";
 
 export const metadata = {
   title: "Холбоо барих — Urban Uniform",
@@ -7,13 +8,6 @@ export const metadata = {
 };
 
 const contactItems = [
-  {
-    icon: Phone,
-    label: "Утас",
-    value: "9968 3330",
-    href: "tel:+97699683330",
-    external: false,
-  },
   {
     icon: Mail,
     label: "И-мэйл",
@@ -60,6 +54,7 @@ export default function ContactPage() {
       {/* Cards */}
       <div className="max-w-[1280px] mx-auto px-6 -mt-8 pb-20">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <PhoneCard single />
           {contactItems.map(({ icon: Icon, label, value, href, external }) => (
             <div
               key={label}
