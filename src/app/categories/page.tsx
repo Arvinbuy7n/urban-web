@@ -1,11 +1,17 @@
-import { getProducts, getCategories } from "@/src/lib/strapi";
+import { getProducts, getCategories, type Product, type Category } from "@/src/lib/strapi";
 import CategoriesClient from "./CategoriesClient";
 
 export default async function CategoriesPage() {
-  const [products, categories] = await Promise.all([
-    getProducts(),
-    getCategories(),
-  ]);
+  let products: Product[] = [];
+  let categories: Category[] = [];
+  try {
+    [products, categories] = await Promise.all([
+      getProducts(),
+      getCategories(),
+    ]);
+  } catch {
+    // Strapi may be cold-starting; page renders with empty data
+  }
 
   return (
     <div className="min-h-screen bg-slate-50">

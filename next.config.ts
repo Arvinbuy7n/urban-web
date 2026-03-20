@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
         hostname: "localhost",
         port: "1337",
       },
+      {
+        protocol: "https",
+        hostname: "grounded-butterfly-9fc6c0e7fd.strapiapp.com",
+      },
     ],
   },
 };

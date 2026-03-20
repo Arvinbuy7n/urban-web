@@ -1,4 +1,4 @@
-import { getProducts } from "@/src/lib/strapi";
+import { getProducts, type Product } from "@/src/lib/strapi";
 import {
   Hero,
   Inventory,
@@ -8,7 +8,12 @@ import {
 } from "../components";
 
 export default async function Home() {
-  const products = await getProducts();
+  let products: Product[] = [];
+  try {
+    products = await getProducts();
+  } catch {
+    // Strapi may be cold-starting; page renders without products
+  }
 
   return (
     <>

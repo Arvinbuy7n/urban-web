@@ -46,6 +46,7 @@ async function strapiRequest<T>(path: string, params?: Record<string, string>): 
       ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
     },
     cache: 'no-store',
+    signal: AbortSignal.timeout(10000),
   });
 
   if (!res.ok) throw new Error(`Strapi error: ${res.status} ${res.statusText}`);
