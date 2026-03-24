@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   SlidersHorizontal,
   Grid3X3,
@@ -11,6 +11,10 @@ import {
 } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { ProductList } from "@/src/components/common/ProductList";
+import {
+  ProductGridSkeleton,
+  CategorySidebarSkeleton,
+} from "@/src/components/common/ProductCardSkeleton";
 import type { Product, Category } from "@/src/lib/strapi";
 import { formatPrice } from "@/src/lib/strapi";
 
@@ -19,7 +23,29 @@ interface Props {
   categories: Category[];
 }
 
-export default function CategoriesClient({ products, categories }: Props) {
+export default function CategoriesClient({
+  products: initialProducts,
+  categories: initialCategories,
+}: Props) {
+  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [categories, setCategories] = useState<Category[]>(initialCategories);
+  const [loading, setLoading] = useState(initialProducts.length === 0);
+
+  useEffect(() => {
+    if (initialProducts.length > 0) return;
+    setLoading(true);
+    Promise.all([
+      fetch("/api/products").then((r) => r.json()),
+      fetch("/api/categories").then((r) => r.json()),
+    ])
+      .then(([p, c]) => {
+        if (p?.length) setProducts(p);
+        if (c?.length) setCategories(c);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [initialProducts]);
+
   const [active, setActive] = useState("Бүх бүтээгдэхүүн");
   const [grid, setGrid] = useState<"grid" | "list">("grid");
   const [search, setSearch] = useState("");
@@ -90,6 +116,24 @@ export default function CategoriesClient({ products, categories }: Props) {
       return next;
     });
     setActive(parentName);
+  }
+
+  if (loading) {
+    return (
+      <div className="max-w-[1280px] mx-auto px-6 py-8 flex gap-8">
+        <aside className="hidden md:flex flex-col w-72 shrink-0 gap-5">
+          <div className="h-11 bg-slate-200 rounded-xl animate-pulse" />
+          <CategorySidebarSkeleton />
+        </aside>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between mb-5 pb-5 border-b border-slate-200">
+            <div className="h-5 w-32 bg-slate-200 rounded animate-pulse" />
+            <div className="h-8 w-20 bg-slate-200 rounded-xl animate-pulse" />
+          </div>
+          <ProductGridSkeleton count={6} cols="xl:grid-cols-3" />
+        </div>
+      </div>
+    );
   }
 
   return (
