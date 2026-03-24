@@ -13,7 +13,11 @@ interface ProductCardProps {
   variant?: "inventory" | "catalog";
 }
 
-const ProductCard = ({ product, index, variant = "catalog" }: ProductCardProps) => {
+const ProductCard = ({
+  product,
+  index,
+  variant = "catalog",
+}: ProductCardProps) => {
   const isInventory = variant === "inventory";
   const imageUrl = getStrapiImageUrl(product.images?.[0]) ?? "";
 
@@ -75,7 +79,9 @@ const ProductCard = ({ product, index, variant = "catalog" }: ProductCardProps) 
             </p>
 
             <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between">
-              <span className="font-black text-primary text-sm">{formatPrice(product.price)}</span>
+              <span className="font-black text-primary text-sm">
+                {formatPrice(product.price)}
+              </span>
               <div className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-primary flex items-center justify-center transition-all duration-300 flex-shrink-0">
                 <ArrowRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-white transition-colors duration-300" />
               </div>

@@ -1,14 +1,16 @@
 import { notFound } from "next/navigation";
 import { getProductByDocumentId, getStrapiImages } from "@/src/lib/strapi";
-import ProductDetail from "./ProductDetail";
+import { ProductDetail } from "@/src/components/product";
 
-interface Props {
+type ProductPageProps = {
   params: Promise<{ id: string }>;
-}
+};
 
-export default async function ProductPage({ params }: Props) {
+export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
+
   let product;
+
   try {
     product = await getProductByDocumentId(id);
   } catch {

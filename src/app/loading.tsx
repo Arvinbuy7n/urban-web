@@ -1,4 +1,4 @@
-import { ProductGridSkeleton } from "@/src/components/common/ProductCardSkeleton";
+import { ProductGridSkeleton } from "@/src/components/product/ProductCardSkeleton";
 
 export default function HomeLoading() {
   return (

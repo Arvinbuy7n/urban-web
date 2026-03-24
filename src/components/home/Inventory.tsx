@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import ProductCard from "./ProductCard";
-import { ProductGridSkeleton } from "./ProductCardSkeleton";
+import ProductCard from "@/src/components/product/ProductCard";
+import { ProductGridSkeleton } from "@/src/components/product/ProductCardSkeleton";
 import { Product } from "@/src/lib/strapi";
 import { useEffect, useState } from "react";
 
@@ -18,13 +18,28 @@ export const Inventory = ({ products: initialProducts }: InventoryProps) => {
   useEffect(() => {
     if (initialProducts.length > 0) return;
     setLoading(true);
-    fetch("/api/products")
-      .then((r) => r.json())
-      .then((data) => {
-        if (data?.length) setProducts(data);
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false));
+    let timer: ReturnType<typeof setTimeout>;
+    let cancelled = false;
+
+    const poll = () => {
+      fetch("/api/products")
+        .then((r) => r.json())
+        .then((data) => {
+          if (cancelled) return;
+          if (data?.length) {
+            setProducts(data);
+            setLoading(false);
+          } else {
+            timer = setTimeout(poll, 5000);
+          }
+        })
+        .catch(() => {
+          if (!cancelled) timer = setTimeout(poll, 5000);
+        });
+    };
+
+    poll();
+    return () => { cancelled = true; clearTimeout(timer); };
   }, [initialProducts]);
 
   return (

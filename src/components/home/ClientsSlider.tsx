@@ -7,10 +7,8 @@ export const ClientsSlider = () => {
 
   return (
     <section className="py-8 bg-slate-50 relative overflow-hidden">
-      {/* Soft radial glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(255,255,255,0.9),transparent)]" />
 
-      {/* Top / bottom dividers */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
@@ -21,9 +19,8 @@ export const ClientsSlider = () => {
       </div>
 
       <div className="relative overflow-hidden">
-        {/* Left fade */}
         <div className="pointer-events-none absolute left-0 top-0 h-full w-32 z-10 bg-gradient-to-r from-slate-50 to-transparent" />
-        {/* Right fade */}
+
         <div className="pointer-events-none absolute right-0 top-0 h-full w-32 z-10 bg-gradient-to-l from-slate-50 to-transparent" />
 
         <div className="animate-marquee">

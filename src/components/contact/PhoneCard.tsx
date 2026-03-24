@@ -2,9 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { Phone } from "lucide-react";
-import { PHONE_NUMBERS, shuffleArray, formatPhone } from "@/src/lib/phoneNumbers";
+import {
+  PHONE_NUMBERS,
+  shuffleArray,
+  formatPhone,
+} from "@/src/lib/phoneNumbers";
 
-export default function PhoneCard({ single = false }: { single?: boolean }) {
+export const PhoneCard = ({ single = false }: { single?: boolean }) => {
   const [phones, setPhones] = useState<string[]>([]);
 
   useEffect(() => {
@@ -38,4 +42,4 @@ export default function PhoneCard({ single = false }: { single?: boolean }) {
       </div>
     </div>
   );
-}
+};

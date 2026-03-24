@@ -5,7 +5,7 @@ import {
   WhyElite,
   ClientsSlider,
   CallToAction,
-} from "../components";
+} from "@/src/components/home";
 
 export default async function Home() {
   let products: Product[] = [];

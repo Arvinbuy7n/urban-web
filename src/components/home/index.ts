@@ -3,8 +3,3 @@ export * from "./Inventory";
 export * from "./WhyElite";
 export * from "./ClientsSlider";
 export * from "./CallToAction";
-export * from "./Navbar";
-export * from "./MobileNav";
-export * from "./Footer";
-export * from "./ProductList";
-export * from "./ContactSection";

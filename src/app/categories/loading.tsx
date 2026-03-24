@@ -1,12 +1,11 @@
 import {
   ProductGridSkeleton,
   CategorySidebarSkeleton,
-} from "@/src/components/common/ProductCardSkeleton";
+} from "@/src/components/product/ProductCardSkeleton";
 
 export default function CategoriesLoading() {
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Page header */}
       <div className="bg-white border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-6 py-10">
           <div className="h-7 w-48 bg-slate-200 rounded animate-pulse" />

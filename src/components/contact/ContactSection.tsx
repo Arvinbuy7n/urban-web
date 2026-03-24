@@ -1,5 +1,5 @@
 import { Mail, MapPin, Clock } from "lucide-react";
-import PhoneCard from "./PhoneCard";
+import { PhoneCard } from "./PhoneCard";
 
 const otherItems = [
   {
@@ -59,13 +59,19 @@ export const ContactSection = () => {
                   <a
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
-                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    rel={
+                      href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                     className="text-sm font-semibold text-slate-900 hover:text-primary transition-colors"
                   >
                     {value}
                   </a>
                 ) : (
-                  <p className="text-sm font-semibold text-slate-900">{value}</p>
+                  <p className="text-sm font-semibold text-slate-900">
+                    {value}
+                  </p>
                 )}
               </div>
             </div>

@@ -7,20 +7,28 @@ import { cn } from "@/src/lib/utils";
 const STRAPI_URL =
   process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
 
-export default function ContactForm() {
-  const [form, setForm] = useState({ phone_number: "", mail: "", note: "" });
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+type FormData = {
+  phone_number: string;
+  mail: string;
+  note: string;
+};
+
+const INITIAL_FORM: FormData = { phone_number: "", mail: "", note: "" };
+
+type Status = "idle" | "loading" | "success" | "error";
+
+export const ContactForm = () => {
+  const [form, setForm] = useState<FormData>(INITIAL_FORM);
+  const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
-  function handleChange(
+  const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
+  ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
+  };
 
-  async function handleSubmit(e: React.FormEvent) {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
     setError("");
@@ -34,12 +42,12 @@ export default function ContactForm() {
 
       if (!res.ok) throw new Error();
       setStatus("success");
-      setForm({ phone_number: "", mail: "", note: "" });
+      setForm(INITIAL_FORM);
     } catch {
       setStatus("error");
       setError("Илгээхэд алдаа гарлаа. Дахин оролдоно уу.");
     }
-  }
+  };
 
   if (status === "success") {
     return (
@@ -65,17 +73,11 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Phone */}
       <div>
         <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5">
           Утасны дугаар
         </label>
-        <div
-          className={cn(
-            "flex items-center gap-3 bg-slate-50 border rounded-xl px-4 h-12 transition-colors focus-within:border-primary/50 focus-within:bg-white",
-            "border-slate-200"
-          )}
-        >
+        <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 h-12 transition-colors focus-within:border-primary/50 focus-within:bg-white">
           <Phone className="w-4 h-4 text-slate-400 shrink-0" />
           <input
             type="tel"
@@ -89,7 +91,6 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* Email */}
       <div>
         <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5">
           И-мэйл
@@ -108,7 +109,6 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* Note */}
       <div>
         <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5">
           Тэмдэглэл
@@ -121,7 +121,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             rows={4}
-            placeholder="Захиалга, үнийн саналын хүсэлт, асуулт болон санал хүсэлтээ энд бичнэ үү..."
+            placeholder="Захиалга, үнийн саналын хүсэлтээ энд бичнэ үү..."
             className="bg-transparent text-sm w-full focus:outline-none placeholder:text-slate-300 text-slate-900 resize-none"
           />
         </div>
@@ -144,4 +144,4 @@ export default function ContactForm() {
       </button>
     </form>
   );
-}
+};
