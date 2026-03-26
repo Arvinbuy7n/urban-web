@@ -128,9 +128,7 @@ export const Footer = () => {
         <div className="flex flex-wrap gap-3 mb-10">
           {[
             "ISO 9001",
-            "OSHA нийцтэй",
-            "ANSI баталгаатай",
-            "CE тэмдэглэгдсэн",
+            "ISO 23592"
           ].map((badge) => (
             <span
               key={badge}
