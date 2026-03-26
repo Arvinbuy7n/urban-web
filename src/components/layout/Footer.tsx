@@ -3,7 +3,11 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState, useEffect } from "react";
-import { PHONE_NUMBERS, shuffleArray, formatPhone } from "@/src/lib/phoneNumbers";
+import {
+  PHONE_NUMBERS,
+  shuffleArray,
+  formatPhone,
+} from "@/src/lib/phoneNumbers";
 
 const columns = [
   {
@@ -39,7 +43,9 @@ const legal = ["Нууцлалын бодлого", "Үйлчилгээний н
 
 export const Footer = () => {
   const [phones, setPhones] = useState(PHONE_NUMBERS);
-  useEffect(() => { setPhones(shuffleArray(PHONE_NUMBERS)); }, []);
+  useEffect(() => {
+    setPhones(shuffleArray(PHONE_NUMBERS));
+  }, []);
 
   return (
     <footer className="bg-slate-900 text-white">
@@ -71,8 +77,15 @@ export const Footer = () => {
                 <div className="flex flex-wrap gap-x-2">
                   {phones.map((num, i) => (
                     <span key={num}>
-                      <a href={`tel:+976${num}`} className="hover:text-white transition-colors">{formatPhone(num)}</a>
-                      {i < phones.length - 1 && <span className="text-slate-600 ml-2">/</span>}
+                      <a
+                        href={`tel:+976${num}`}
+                        className="hover:text-white transition-colors"
+                      >
+                        {formatPhone(num)}
+                      </a>
+                      {i < phones.length - 1 && (
+                        <span className="text-slate-600 ml-2">/</span>
+                      )}
                     </span>
                   ))}
                 </div>
@@ -126,10 +139,7 @@ export const Footer = () => {
 
         {/* Certification badges */}
         <div className="flex flex-wrap gap-3 mb-10">
-          {[
-            "ISO 9001",
-            "ISO 23592"
-          ].map((badge) => (
+          {["ISO 9001", "ISO 23592"].map((badge) => (
             <span
               key={badge}
               className="text-[10px] font-black uppercase tracking-widest text-slate-500 border border-slate-800 rounded-full px-3 py-1"
