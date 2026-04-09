@@ -1,4 +1,4 @@
-import { INDUSTRIES } from "@/src/types";
+import { INDUSTRIES } from "@/src/lib/constants";
 import { Zap } from "lucide-react";
 
 export const IndustriesSection = () => (

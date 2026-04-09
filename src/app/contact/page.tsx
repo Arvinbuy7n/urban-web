@@ -1,5 +1,5 @@
 import { PhoneCard, ContactCard, ContactForm } from "@/src/components/contact";
-import { CONTACT_ITEMS, MAP_EMBED_URL } from "@/src/types";
+import { CONTACT_ITEMS, MAP_EMBED_URL } from "@/src/lib/constants";
 
 export const metadata = {
   title: "Холбоо барих — Urban Uniform",

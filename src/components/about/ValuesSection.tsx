@@ -1,4 +1,4 @@
-import { VALUES } from "@/src/types";
+import { VALUES } from "@/src/lib/constants";
 
 export const ValuesSection = () => (
   <div className="mb-20">

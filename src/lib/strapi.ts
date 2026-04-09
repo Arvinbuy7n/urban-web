@@ -37,7 +37,8 @@ export interface Product {
 
 async function strapiRequest<T>(
   path: string,
-  params?: Record<string, string>
+  params?: Record<string, string>,
+  tags?: string[]
 ): Promise<T> {
   const url = new URL(`/api${path}`, STRAPI_URL);
   if (params) {
@@ -49,7 +50,7 @@ async function strapiRequest<T>(
       "Content-Type": "application/json",
       ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
     },
-    cache: "no-store",
+    next: { tags: tags ?? [] },
     signal: AbortSignal.timeout(10000),
   });
 
@@ -60,11 +61,15 @@ async function strapiRequest<T>(
 // ── Products ─────────────────────────────────────────────────────────────────
 
 export async function getProducts(): Promise<Product[]> {
-  const data = await strapiRequest<{ data: Product[] }>("/products", {
-    "populate[0]": "images",
-    "populate[1]": "category",
-    sort: "createdAt:desc",
-  });
+  const data = await strapiRequest<{ data: Product[] }>(
+    "/products",
+    {
+      "populate[0]": "images",
+      "populate[1]": "category",
+      sort: "createdAt:desc",
+    },
+    ["products"]
+  );
   return data.data;
 }
 
@@ -76,7 +81,8 @@ export async function getProductByDocumentId(
     {
       "populate[0]": "images",
       "populate[1]": "category",
-    }
+    },
+    ["products", `product-${documentId}`]
   );
   return data.data ?? null;
 }
@@ -84,11 +90,15 @@ export async function getProductByDocumentId(
 // ── Categories ───────────────────────────────────────────────────────────────
 
 export async function getCategories(): Promise<Category[]> {
-  const data = await strapiRequest<{ data: Category[] }>("/categories", {
-    sort: "name:asc",
-    "populate[0]": "children",
-    "populate[1]": "parent",
-  });
+  const data = await strapiRequest<{ data: Category[] }>(
+    "/categories",
+    {
+      sort: "name:asc",
+      "populate[0]": "children",
+      "populate[1]": "parent",
+    },
+    ["categories"]
+  );
   return data.data;
 }
 

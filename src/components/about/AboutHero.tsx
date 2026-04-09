@@ -1,4 +1,4 @@
-import { STATS } from "@/src/types";
+import { STATS } from "@/src/lib/constants";
 
 export const AboutHero = () => (
   <div className="bg-slate-900 text-white">

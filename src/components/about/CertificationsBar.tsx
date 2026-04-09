@@ -1,4 +1,4 @@
-import { ABOUT_CERTIFICATIONS } from "@/src/types";
+import { ABOUT_CERTIFICATIONS } from "@/src/lib/constants";
 import { Award } from "lucide-react";
 
 export const CertificationsBar = () => (

@@ -1,4 +1,4 @@
-import { SERVICES } from "@/src/types";
+import { SERVICES } from "@/src/lib/constants";
 import { CheckCircle } from "lucide-react";
 
 export const MissionSection = () => (

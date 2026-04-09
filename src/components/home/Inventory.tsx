@@ -1,47 +1,13 @@
-"use client";
-
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, PackageX } from "lucide-react";
 import ProductCard from "@/src/components/product/ProductCard";
-import { ProductGridSkeleton } from "@/src/components/product/ProductCardSkeleton";
 import { Product } from "@/src/lib/strapi";
-import { useEffect, useState } from "react";
 
 interface InventoryProps {
   products: Product[];
 }
 
-export const Inventory = ({ products: initialProducts }: InventoryProps) => {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
-  const [loading, setLoading] = useState(initialProducts.length === 0);
-
-  useEffect(() => {
-    if (initialProducts.length > 0) return;
-    setLoading(true);
-    let timer: ReturnType<typeof setTimeout>;
-    let cancelled = false;
-
-    const poll = () => {
-      fetch("/api/products")
-        .then((r) => r.json())
-        .then((data) => {
-          if (cancelled) return;
-          if (data?.length) {
-            setProducts(data);
-            setLoading(false);
-          } else {
-            timer = setTimeout(poll, 5000);
-          }
-        })
-        .catch(() => {
-          if (!cancelled) timer = setTimeout(poll, 5000);
-        });
-    };
-
-    poll();
-    return () => { cancelled = true; clearTimeout(timer); };
-  }, [initialProducts]);
-
+export const Inventory = ({ products }: InventoryProps) => {
   return (
     <section className="bg-slate-50 py-24">
       <div className="max-w-[1280px] mx-auto px-6">
@@ -67,9 +33,7 @@ export const Inventory = ({ products: initialProducts }: InventoryProps) => {
         </div>
 
         {/* Grid */}
-        {loading ? (
-          <ProductGridSkeleton count={8} cols="lg:grid-cols-4" />
-        ) : (
+        {products.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {products.map((product, idx) => (
               <ProductCard
@@ -79,6 +43,13 @@ export const Inventory = ({ products: initialProducts }: InventoryProps) => {
                 variant="inventory"
               />
             ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-16 gap-3 text-center">
+            <PackageX className="w-10 h-10 text-slate-300" />
+            <p className="text-sm text-slate-400">
+              Одоогоор бүтээгдэхүүн байхгүй байна.
+            </p>
           </div>
         )}
       </div>

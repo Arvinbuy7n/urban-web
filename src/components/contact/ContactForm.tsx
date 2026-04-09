@@ -28,10 +28,32 @@ export const ContactForm = () => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const validate = (): string | null => {
+    const phone = form.phone_number.trim();
+    if (!phone || !/^\d{8}$/.test(phone)) {
+      return "Утасны дугаар 8 оронтой тоо байх ёстой.";
+    }
+    const email = form.mail.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return "Зөв и-мэйл хаяг оруулна уу.";
+    }
+    if (!form.note.trim()) {
+      return "Тэмдэглэл хоосон байна.";
+    }
+    return null;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("loading");
     setError("");
+
+    const validationError = validate();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
+    setStatus("loading");
 
     try {
       const res = await fetch(`${STRAPI_URL}/api/contact-submissions`, {
