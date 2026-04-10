@@ -1,10 +1,24 @@
 import { notFound } from "next/navigation";
-import { getProductByDocumentId, getStrapiImages } from "@/src/lib/strapi";
+import {
+  getProducts,
+  getProductByDocumentId,
+  getStrapiImages,
+} from "@/src/lib/strapi";
 import { ProductDetail } from "@/src/components/product";
 
 type ProductPageProps = {
   params: Promise<{ id: string }>;
 };
+
+export async function generateStaticParams() {
+  try {
+    const products = await getProducts();
+
+    return products.map((p) => ({ id: p.documentId }));
+  } catch {
+    return [];
+  }
+}
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
