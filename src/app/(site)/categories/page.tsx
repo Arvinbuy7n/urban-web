@@ -2,6 +2,9 @@ import { CategoriesClient } from "@/src/components/categories";
 import { getCategories, getProducts } from "@/src/lib/supabase/web/queries";
 import type { Product, Category } from "@/src/lib/supabase";
 
+// ISR: regenerate hourly as a fallback; admin actions revalidate on save.
+export const revalidate = 3600;
+
 export default async function CategoriesPage() {
   let products: Product[] = [];
   let categories: Category[] = [];

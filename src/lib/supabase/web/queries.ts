@@ -1,7 +1,8 @@
 // Server-side read helpers. Import from Server Components and Route Handlers.
-// Client Components should not import this file (uses next/headers via server.ts).
+// Uses the cookies-free public client so storefront pages can be statically
+// rendered and cached on the CDN. Writes/auth go through ./server.
 
-import { createClient } from "./server";
+import { createPublicClient } from "./public-client";
 import {
   PRODUCT_SELECT,
   mapProduct,
@@ -13,7 +14,7 @@ import {
 } from "../types";
 
 export async function getProducts(): Promise<Product[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await withTimeout(
     supabase
       .from("products")
@@ -30,7 +31,7 @@ export async function getProducts(): Promise<Product[]> {
 export async function getProductByDocumentId(
   idOrSlug: string
 ): Promise<Product | null> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const column = /^\d+$/.test(idOrSlug) ? "id" : "slug";
   const value: string | number = column === "id" ? Number(idOrSlug) : idOrSlug;
 
@@ -48,7 +49,7 @@ export async function getProductByDocumentId(
 }
 
 export async function getCategories(): Promise<Category[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await withTimeout(
     supabase
       .from("categories")

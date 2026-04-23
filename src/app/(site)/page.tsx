@@ -8,6 +8,9 @@ import {
   CallToAction,
 } from "@/src/components/home";
 
+// ISR: regenerate hourly as a fallback; admin actions revalidate on save.
+export const revalidate = 3600;
+
 export default async function Home() {
   let products: Product[] = [];
 
