@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Grid3X3, LayoutList, PackageSearch } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { ProductList } from "@/src/components/product/ProductList";
-import type { Product, Category } from "@/src/lib/strapi";
+import type { Product, Category } from "@/src/lib/supabase";
 import { CategorySidebar } from "./CategorySidebar";
 import { filterProducts } from "@/src/utils";
 

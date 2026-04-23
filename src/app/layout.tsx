@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Footer, Navbar } from "../components";
 
 export const metadata: Metadata = {
   title: "Urban Uniform — Аюулгүй байдалд зориулан бүтээсэн",
@@ -19,9 +18,7 @@ export default function RootLayout({
   return (
     <html lang="mn">
       <body className="min-h-screen selection:bg-primary/30 flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

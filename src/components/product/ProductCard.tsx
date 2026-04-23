@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/src/lib/ui/badge";
 import { cn } from "@/src/lib/utils";
-import { Product, getStrapiImageUrl, formatPrice } from "@/src/lib/strapi";
+import { Product, getImageUrl, formatPrice } from "@/src/lib/supabase";
 
 interface ProductCardProps {
   product: Product;
@@ -19,7 +19,7 @@ const ProductCard = ({
   variant = "catalog",
 }: ProductCardProps) => {
   const isInventory = variant === "inventory";
-  const imageUrl = getStrapiImageUrl(product.images?.[0]) ?? "";
+  const imageUrl = getImageUrl(product.images?.[0]) ?? "";
 
   const motionProps = isInventory
     ? {

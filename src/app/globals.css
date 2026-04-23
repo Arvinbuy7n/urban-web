@@ -2,6 +2,9 @@
 @import "tailwindcss";
 
 @source "../**/*.{ts,tsx}";
+@source "../app/**/*.{ts,tsx}";
+@source "../app/(site)/**/*.{ts,tsx}";
+@source "../components/**/*.{ts,tsx}";
 @source "../../next.config.ts";
 
 @theme {

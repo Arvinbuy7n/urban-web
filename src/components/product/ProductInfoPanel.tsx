@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Star, CheckCircle2, Package } from "lucide-react";
 import { cn } from "@/src/lib/utils";
-import { formatPrice } from "@/src/lib/strapi";
+import { formatPrice } from "@/src/lib/supabase";
 import { SPECS, TRUST_BADGES, CERTIFICATIONS } from "@/src/lib/constants";
 
 type ProductInfoPanelProps = {

@@ -3,9 +3,7 @@
 import { useState } from "react";
 import { Phone, Mail, MessageSquare, Send, CheckCircle2 } from "lucide-react";
 import { cn } from "@/src/lib/utils";
-
-const STRAPI_URL =
-  process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
+import { submitContact } from "@/src/lib/supabase/web/actions";
 
 type FormData = {
   phone_number: string;
@@ -56,13 +54,7 @@ export const ContactForm = () => {
     setStatus("loading");
 
     try {
-      const res = await fetch(`${STRAPI_URL}/api/contact-submissions`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ data: form }),
-      });
-
-      if (!res.ok) throw new Error();
+      await submitContact(form);
       setStatus("success");
       setForm(INITIAL_FORM);
     } catch {

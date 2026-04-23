@@ -8,3 +8,6 @@ coverage/
 !.env.example
 
 .next
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo

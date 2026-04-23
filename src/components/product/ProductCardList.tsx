@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/src/lib/ui/badge";
-import { Product, getStrapiImageUrl, formatPrice } from "@/src/lib/strapi";
+import { Product, getImageUrl, formatPrice } from "@/src/lib/supabase";
 
 interface ProductCardListProps {
   product: Product;
@@ -12,7 +12,7 @@ interface ProductCardListProps {
 }
 
 const ProductCardList = ({ product, index }: ProductCardListProps) => {
-  const imageUrl = getStrapiImageUrl(product.images?.[0]) ?? "";
+  const imageUrl = getImageUrl(product.images?.[0]) ?? "";
 
   return (
     <motion.div

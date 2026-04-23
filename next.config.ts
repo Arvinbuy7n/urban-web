@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Admin product-image uploads travel through Server Actions as base64.
+    // Raise the default 1MB limit so typical 2–5MB photos go through.
+    serverActions: { bodySizeLimit: "10mb" },
+  },
   images: {
     remotePatterns: [
       {
@@ -17,8 +22,9 @@ const nextConfig: NextConfig = {
         port: "1337",
       },
       {
+        // Supabase Storage public URLs: https://<project-ref>.supabase.co/storage/...
         protocol: "https",
-        hostname: "grounded-butterfly-9fc6c0e7fd.strapiapp.com",
+        hostname: "*.supabase.co",
       },
     ],
   },

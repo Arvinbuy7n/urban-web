@@ -2,8 +2,8 @@
 
 import { SlidersHorizontal, Search, ChevronRight } from "lucide-react";
 import { cn } from "@/src/lib/utils";
-import type { Product, Category } from "@/src/lib/strapi";
-import { formatPrice } from "@/src/lib/strapi";
+import type { Product, Category } from "@/src/lib/supabase";
+import { formatPrice } from "@/src/lib/supabase";
 
 type CategorySidebarProps = {
   products: Product[];

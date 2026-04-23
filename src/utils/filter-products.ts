@@ -1,4 +1,4 @@
-import type { Product, Category } from "@/src/lib/strapi";
+import type { Product, Category } from "@/src/lib/supabase";
 
 type FilterOptions = {
   active: string;

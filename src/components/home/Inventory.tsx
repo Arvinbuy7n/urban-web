@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, PackageX } from "lucide-react";
 import ProductCard from "@/src/components/product/ProductCard";
-import { Product } from "@/src/lib/strapi";
+import { Product } from "@/src/lib/supabase";
 
 interface InventoryProps {
   products: Product[];

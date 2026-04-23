@@ -1,6 +1,6 @@
 import { CategoriesClient } from "@/src/components/categories";
-import { getCategories, getProducts } from "@/src/lib/queries";
-import type { Product, Category } from "@/src/lib/strapi";
+import { getCategories, getProducts } from "@/src/lib/supabase/web/queries";
+import type { Product, Category } from "@/src/lib/supabase";
 
 export default async function CategoriesPage() {
   let products: Product[] = [];
@@ -12,7 +12,7 @@ export default async function CategoriesPage() {
       getCategories(),
     ]);
   } catch {
-    // Strapi may be unavailable; render empty state
+    // Supabase unreachable — render the empty state instead of crashing
   }
 
   return (

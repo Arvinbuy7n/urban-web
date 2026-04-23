@@ -1,9 +1,6 @@
 import { notFound } from "next/navigation";
-import {
-  getProducts,
-  getProductByDocumentId,
-  getStrapiImages,
-} from "@/src/lib/strapi";
+import { getProducts, getProductByDocumentId } from "@/src/lib/supabase/web/queries";
+import { getImageUrls } from "@/src/lib/supabase";
 import { ProductDetail } from "@/src/components/product";
 
 type ProductPageProps = {
@@ -33,7 +30,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   if (!product) notFound();
 
-  const images = getStrapiImages(product.images ?? []);
+  const images = getImageUrls(product.images ?? []);
 
   return (
     <ProductDetail

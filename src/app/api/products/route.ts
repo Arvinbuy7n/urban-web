@@ -1,4 +1,4 @@
-import { getProducts } from "@/src/lib/strapi";
+import { getProducts } from "@/src/lib/supabase/web/queries";
 import { NextResponse } from "next/server";
 
 export async function GET() {

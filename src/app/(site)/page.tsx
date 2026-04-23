@@ -1,4 +1,5 @@
-import { getProducts, type Product } from "@/src/lib/strapi";
+import { getProducts } from "@/src/lib/supabase/web/queries";
+import type { Product } from "@/src/lib/supabase";
 import {
   Hero,
   Inventory,
@@ -9,10 +10,11 @@ import {
 
 export default async function Home() {
   let products: Product[] = [];
+
   try {
     products = await getProducts();
   } catch {
-    // Strapi may be cold-starting; page renders without products
+    // Supabase unreachable — render without products rather than crash
   }
 
   return (

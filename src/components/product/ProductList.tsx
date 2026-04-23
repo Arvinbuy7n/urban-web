@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/src/lib/utils";
-import { Product } from "@/src/lib/strapi";
+import { Product } from "@/src/lib/supabase";
 import ProductCard from "./ProductCard";
 import ProductCardList from "./ProductCardList";
 
