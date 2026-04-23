@@ -17,17 +17,17 @@ const TAGS = ["ISO баталгаатай", "Галд тэсвэртэй", "OSHA
 
 const HERO_IMAGES = [
   {
-    src: "https://cdn.strauss.com/global/assets/ats/images/ArticleTileV3/product/16.Release.3210670/High-vis_softshell_jacket_e_s_motion-9064-3-638382265624666173.png",
+    src: "https://res.cloudinary.com/drik9j46w/image/upload/v1776934419/Urban/Sorochka1_hqch8v.jpg",
     label: "Титан GT В-Цуврал",
     sub: "Галд тэсвэртэй · ISO баталгаатай",
   },
   {
-    src: "https://cdn.strauss.com/global/assets/ats/images/ArticleTileV3/product/16.Release.3210770/High-vis_trousers_e_s_motion-9059-3-638162704673553162.png",
+    src: "https://res.cloudinary.com/drik9j46w/image/upload/v1776934418/Urban/Sorochka2_kryzjl.jpg",
     label: "Арктик Про Цуврал",
     sub: "Хүйтэнд тэсвэртэй · CE баталгаатай",
   },
   {
-    src: "https://cdn.strauss.com/global/assets/ats/images/ArticleTileV3/product/16.Release.3210120/High-vis_softshell_jacket_softl_e_s_motion_2020-117826-0-638162704600563934.png",
+    src: "https://res.cloudinary.com/drik9j46w/image/upload/v1776934419/Urban/Jeans_gx9ept.jpg",
     label: "Хай-Виз Элит Цуврал",
     sub: "Өндөр харагдах · ANSI нийцтэй",
   },
